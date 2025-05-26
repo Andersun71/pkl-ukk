@@ -4,6 +4,7 @@ use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Industry\Show;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,4 +22,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
 });
 
-require __DIR__.'/auth.php';
+Route::middleware(['auth'])->group(function () {
+    Route::get('/industry/show', Show::class)->name('industry.show');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/internship/show', Show::class)->name('internship.show');
+});
+
+require __DIR__ . '/auth.php';
